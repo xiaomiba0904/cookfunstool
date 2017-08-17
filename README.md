@@ -10,3 +10,6 @@
 
 * [priorityqueue](https://github.com/xiaomiba0904/cookfunstool/blob/master/person_function/priorityqueue.py)
   线程安全的优先级队列
+
+* [re_deadlock](https://github.com/xiaomiba0904/cookfunstool/blob/master/person_function/re_deadlock.py)
+  解决死锁的一种方法
