@@ -1,6 +1,7 @@
 from collections import namedtuple
 from .promo import PROMOS
 
+# 顾客类
 Customer = namedtuple('Customer', 'name fidelity')
 
 
@@ -33,8 +34,8 @@ class Order(object):
         self.cart = list(cart)
         self.promotion = promotion
 
-
     def total(self):
+        """总价"""
         return sum(item.total() for item in self.cart)
 
 
@@ -42,8 +43,7 @@ class Order(object):
         """指定折扣"""
         if self.promotion is None:
             return 0
-        else:
-            return self.promotion(self)
+        return self.promotion(self)
 
     def base_promo(self):
         """最佳折扣策略"""
@@ -54,6 +54,7 @@ class Order(object):
         return sum(promo(self) for promo in PROMOS)
 
     def due(self):
+        """折扣后价格"""
         if self.promotion is not None:
             return self.total() - self.designate_promo()
         max_promo = max(self.designate_promo(), self.base_promo(), self.all_promo())
@@ -62,4 +63,3 @@ class Order(object):
     def __repr__(self):
         fmt = '<Order total: {:.2f} due: {:.2f}'
         return fmt.format(self.total(), self.due())
-

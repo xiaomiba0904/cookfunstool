@@ -1,5 +1,5 @@
-from date_processing import dedup
-from flatten import flatten
+from .date_processing import dedup
+from .flatten import flatten
 import unittest
 
 
@@ -39,6 +39,3 @@ class TestFlatten(unittest.TestCase):
 
     def test_flatten(self):
         self.assertEqual(list(flatten(self.testitems)), self.test_reslut)
-
-if __name__ == '__main__':
-    unittest.main()

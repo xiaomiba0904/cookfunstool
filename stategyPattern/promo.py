@@ -9,6 +9,10 @@ class Promotion(ABC):
     def __call__(self, order):
         """返回折扣金额（正值）"""
 
+    def __str__(self):
+        """优惠策略说明"""
+        return 'Promotion<{}>'.format(self.__doc__)
+
 
 def promotion_register(promo):
     """注册使用的策略装饰器"""
@@ -19,7 +23,7 @@ def promotion_register(promo):
 
 @promotion_register
 class FidelityPromo(Promotion):
-    """为积分为1000或以上的顾客提供5%折扣"""
+    """积分为1000或以上的顾客提供5%折扣"""
 
     def __call__(self, order):
         return order.total() * 0.05 if order.customer.fidelity >= 1000 else 0
@@ -46,4 +50,3 @@ class LargeOrderPromo(Promotion):
         if len(discount_items) >= 10:
             return order.total() * 0.07
         return 0
-

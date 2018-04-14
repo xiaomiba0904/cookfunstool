@@ -14,5 +14,8 @@
 * [re_deadlock](https://github.com/xiaomiba0904/cookfunstool/blob/master/person_function/re_deadlock.py)
   解决死锁的一种方法
 
+* [dispatch](https://github.com/xiaomiba0904/cookfunstool/blob/master/person_function/generic.py)
+  python 类似Java的函数重载的简单实现
+
 * [strategyPattern](https://github.com/xiaomiba0904/cookfunstool/tree/master/stategyPattern)
   积分优惠的策略模式实现
