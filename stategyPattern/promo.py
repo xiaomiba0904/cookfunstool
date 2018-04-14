@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+PROMOS = list()
+
 
 class Promotion(ABC):
     """策略抽象基类"""
@@ -8,6 +10,14 @@ class Promotion(ABC):
         """返回折扣金额（正值）"""
 
 
+def promotion_register(promo):
+    """注册使用的策略装饰器"""
+    if issubclass(promo, Promotion):
+        PROMOS.append(promo())
+    return promo
+
+
+@promotion_register
 class FidelityPromo(Promotion):
     """为积分为1000或以上的顾客提供5%折扣"""
 
@@ -15,6 +25,7 @@ class FidelityPromo(Promotion):
         return order.total() * 0.05 if order.customer.fidelity >= 1000 else 0
 
 
+@promotion_register
 class BulkItemPromo(Promotion):
     """单个商品为20个或以上时提供10%折扣"""
 
@@ -26,6 +37,7 @@ class BulkItemPromo(Promotion):
         return discount
 
 
+@promotion_register
 class LargeOrderPromo(Promotion):
     """订单中的不同商品达到10个以上是提供7%折扣"""
 

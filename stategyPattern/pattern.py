@@ -1,5 +1,5 @@
 from collections import namedtuple
-from fluentPython.strategPattern import PROMOS
+from .promo import PROMOS
 
 Customer = namedtuple('Customer', 'name fidelity')
 
